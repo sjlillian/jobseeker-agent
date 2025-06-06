@@ -1,0 +1,64 @@
+{
+  "_comment": "This is a template file showing the expected structure for resume.json",
+  "_instructions": "Copy this structure to resume.json and fill in your own information",
+  
+  "name": "Your Full Name",
+  "title": "Your Professional Title",
+  "contact": {
+    "address": "City, State/Country",
+    "phone": "(xxx) xxx-xxxx",
+    "email": "your.email@example.com",
+    "linkedin": "linkedin.com/in/yourprofile",
+    "github": "github.com/yourusername",
+    "website": "yourwebsite.com"
+  },
+  "summary": "A compelling 2-3 sentence professional summary highlighting your experience, key skills, and career objectives.",
+  "skills": [
+    "Programming Language 1",
+    "Programming Language 2",
+    "Framework 1",
+    "Framework 2",
+    "Database Technology",
+    "Cloud Platform",
+    "Development Tool",
+    "Methodology/Practice"
+  ],
+  "experience": [
+    {
+      "title": "Your Job Title",
+      "company": "Company Name",
+      "location": "City, State",
+      "start_date": "Month Year",
+      "end_date": "Month Year or Present",
+      "description": [
+        "Achievement-focused bullet point with quantifiable results",
+        "Another accomplishment that demonstrates your impact",
+        "Technical skills and technologies you used in this role",
+        "Leadership or collaboration experiences"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "University/College Name",
+      "degree": "Degree Type and Major",
+      "year": "Graduation Year"
+    }
+  ],
+  "certifications": [
+    "Certification Name (Year)",
+    "Another Certification (Year)"
+  ],
+  "projects": [
+    {
+      "name": "Project Name",
+      "description": "Brief description of the project, its purpose, and your role. Include any notable achievements or impact.",
+      "technologies": ["Tech 1", "Tech 2", "Tech 3"]
+    }
+  ],
+  "awards": [
+    "Award Name - Organization (Year)",
+    "Another Achievement (Year)"
+  ]
+}
+
