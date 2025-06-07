@@ -2,6 +2,7 @@ from openai import OpenAI
 import json
 import os
 from typing import List, Dict, Any
+from job_board_apis import JobBoardAggregator
 
 class GPTInterface:
     def __init__(self, api_key: str = None):
@@ -19,42 +20,72 @@ class GPTInterface:
             if not api_key:
                 raise ValueError("OpenAI API key not provided. Set OPENAI_API_KEY environment variable or pass it directly.")
             self.client = OpenAI(api_key=api_key)
+        
+        # Initialize job board aggregator
+        self.job_aggregator = JobBoardAggregator()
     
     def find_relevant_jobs(self, resume_data: Dict[str, Any], job_preferences: Dict[str, Any] = None) -> List[Dict[str, Any]]:
         """
-        Use GPT to find relevant jobs based on resume data
+        Fetch real jobs from job boards and use GPT to analyze and rank them based on resume data
         
         Args:
             resume_data (dict): Resume data from resume.json
             job_preferences (dict): User preferences for job search
             
         Returns:
-            List[Dict]: List of relevant job opportunities
+            List[Dict]: List of analyzed and ranked job opportunities
         """
         
-        # Create a prompt for job searching
-        prompt = self._create_job_search_prompt(resume_data, job_preferences)
+        # Step 1: Determine search query from resume and preferences
+        search_query = self._generate_search_query(resume_data, job_preferences)
+        location = self._extract_location(resume_data, job_preferences)
         
-        try:
-            response = self.client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are a professional job search assistant. Your task is to suggest realistic, current job opportunities that match the candidate's profile. Provide specific, actionable job listings with company names, job titles, and brief descriptions. Format your response as a valid JSON array of job objects."},
-                    {"role": "user", "content": prompt}
-                ],
-                max_tokens=2000,
-                temperature=0.7
-            )
-            
-            # Parse the response
-            content = response.choices[0].message.content
-            jobs = self._parse_job_response(content)
-            
-            return jobs
-            
-        except Exception as e:
-            print(f"Error calling OpenAI API: {e}")
+        print(f"🔍 Searching job boards for: '{search_query}' in '{location}'")
+        
+        # Step 2: Fetch real jobs from job boards
+        raw_jobs = self.job_aggregator.search_all_boards(
+            query=search_query,
+            location=location,
+            limit_per_board=15  # Get more jobs to have better selection
+        )
+        
+        if not raw_jobs:
+            print("⚠️ No jobs found from job boards. This might be due to:")
+            print("   - API keys not configured")
+            print("   - Network connectivity issues")
+            print("   - No matching jobs available")
             return []
+        
+        print(f"📊 Found {len(raw_jobs)} jobs from job boards")
+        
+        # Step 3: Use GPT to analyze and rank the jobs
+        print("🤖 Analyzing jobs with AI for best matches...")
+        analyzed_jobs = self._analyze_jobs_with_gpt(resume_data, raw_jobs, job_preferences)
+        
+        return analyzed_jobs
+    
+    def configure_job_apis(self, adzuna_app_id: str = None, adzuna_app_key: str = None, 
+                          jsearch_api_key: str = None, usajobs_email: str = None):
+        """
+        Configure job board API credentials
+        
+        Args:
+            adzuna_app_id (str): Adzuna API app ID
+            adzuna_app_key (str): Adzuna API app key
+            jsearch_api_key (str): JSearch RapidAPI key
+            usajobs_email (str): Email for USAJobs API
+        """
+        if adzuna_app_id and adzuna_app_key:
+            self.job_aggregator.configure_adzuna(adzuna_app_id, adzuna_app_key)
+            print("✅ Adzuna API configured")
+        
+        if jsearch_api_key:
+            self.job_aggregator.configure_jsearch(jsearch_api_key)
+            print("✅ JSearch API configured")
+        
+        if usajobs_email:
+            self.job_aggregator.configure_usajobs(usajobs_email)
+            print("✅ USAJobs API configured")
     
     def _create_job_search_prompt(self, resume_data: Dict[str, Any], job_preferences: Dict[str, Any] = None) -> str:
         """
@@ -64,6 +95,7 @@ class GPTInterface:
         skills = ", ".join(resume_data.get('skills', []))
         experience_summary = self._summarize_experience(resume_data.get('experience', []))
         education = self._summarize_education(resume_data.get('education', []))
+        location = resume_data.get('location', 'Unknown')
         
         prompt = f"""
 Based on the following candidate profile, suggest 5-7 realistic job opportunities that would be a good match:
@@ -71,6 +103,7 @@ Based on the following candidate profile, suggest 5-7 realistic job opportunitie
 CANDIDATE PROFILE:
 - Name: {resume_data.get('name', 'N/A')}
 - Current Title: {resume_data.get('title', 'N/A')}
+- current Location: {location}
 - Skills: {skills}
 - Experience Summary: {experience_summary}
 - Education: {education}
@@ -88,6 +121,7 @@ Please provide a JSON array of job opportunities with the following structure:
 [
   {
     "title": "Job Title",
+    "url": "Link to job listing",
     "company": "Company Name",
     "location": "City, State/Country",
     "salary_range": "$X - $Y",
@@ -99,6 +133,13 @@ Please provide a JSON array of job opportunities with the following structure:
     "why_good_match": "Explanation of why this is a good fit"
   }
 ]
+
+The candidate is located in: {location}.
+
+Focus ONLY on job listings that are:
+- **Based in or near this location**
+- OR offer **fully remote work options**
+- Avoid listings based in unrelated states, cities, or countries unless fully remote
 
 Focus on real companies and realistic positions. Ensure job titles and requirements align with the candidate's experience level.
 """
@@ -207,3 +248,4 @@ def test_gpt_interface():
 if __name__ == "__main__":
     test_gpt_interface()
 
+    

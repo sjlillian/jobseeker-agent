@@ -124,6 +124,7 @@ class JobSeekerAgent:
         
         for i, job in enumerate(jobs, 1):
             print(f"\n[{i}] {job.get('title', 'N/A')} at {job.get('company', 'N/A')}")
+            print(f"    🔗 Job Link: {job.get('url', 'N/A')}")
             print(f"    📍 Location: {job.get('location', 'N/A')}")
             print(f"    💰 Salary: {job.get('salary_range', 'N/A')}")
             print(f"    🏢 Type: {job.get('job_type', 'N/A')} | {job.get('remote_option', 'N/A')}")

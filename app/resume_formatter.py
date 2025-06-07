@@ -85,6 +85,9 @@ class OllamaResumeFormatter:
         
         prompt = f"""
 You are a professional resume writer. Your task is to tailor a resume for a specific job posting.
+You must format your response in HTML/CSS for rendering as a PDF using a standard US Letter page (8.5" x 11", portrait orientation).
+**Your final output must fit entirely on one page.** If content exceeds one page, reduce verbosity, compress language, and prioritize the most relevant information.
+No resume section should overflow onto a second page. Use clean HTML layout and conservative font sizes (11–12pt recommended). Avoid using long paragraphs or excessive bullet points.
 
 ORIGINAL RESUME:
 Name: {resume_data.get('name', 'N/A')}
@@ -129,6 +132,8 @@ KEYWORDS TO INCLUDE:
 [Additional relevant keywords]
 
 Keep the core facts accurate but emphasize aspects most relevant to the target position.
+Ensure that the total resume length fits within a single US Letter page in portrait orientation when rendered as PDF.
+The output must be clean, concise, professional, and layout-friendly. If the result exceeds one page, revise and compress until it fits.
 """
         
         return prompt
