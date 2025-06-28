@@ -1,7 +1,7 @@
 import requests
 from app.job_apis.base import JobAPI
 
-class AdzunaJobAPI(JobAPI):
+class AdzunaAPI(JobAPI):
     def __init__(self, app_id: str, app_key: str):
         self.base_url = "https://api.adzuna.com/v1/api/jobs"
         self.app_id = adzuna_app_id

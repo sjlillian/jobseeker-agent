@@ -1,8 +1,7 @@
 import requests
 from app.job_apis.base import JobAPI
 
-class JoobleJobAPI(JobAPI):
-
+class JoobleAPI(JobAPI):
     def __init__(self, config: dict):
         self.base_url = "https://jooble.org/api/"
         self.api_key = jooble_api_key

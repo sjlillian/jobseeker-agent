@@ -60,29 +60,20 @@ class JobSeekerAgent:
         print(f"✅ Loaded resume for: {self.resume_data.get('name', 'Unknown')}")
         return True
     
-    'Refactor setup_openai to setup_API_interface'
-    def setup_openai(self, api_key: str = None) -> bool:
+    def setup_API_interface(self) -> bool:
         """
-        Setup OpenAI interface
+        Setup the job board API controller
         
-        Args:
-            api_key (str): OpenAI API key. If None, tries environment variable
-            
         Returns:
-            bool: True if successful, False otherwise
+            bool: True if the controller is set up successfully, False otherwise
         """
-        try:
-            self.gpt_interface = GPTInterface(api_key)
-            print("✅ OpenAI interface ready")
-            return True
-        except Exception as e:
-            print(f"❌ Failed to setup OpenAI: {e}")
-            return False
+        self.job_board_controller = JobBoardController()
+        return self.job_board_controller.is_initialized
     
     'Refactor find_jobs to call each API implementation'
     def find_jobs(self, job_preferences: Dict[str, Any] = None) -> List[Dict[str, Any]]:
         """
-        Find relevant jobs using OpenAI
+        Find relevant jobs using multiple job boards
         
         Args:
             job_preferences (dict): User job preferences
@@ -90,16 +81,12 @@ class JobSeekerAgent:
         Returns:
             List[Dict]: List of relevant job opportunities
         """
-        if not self.gpt_interface:
-            print("❌ OpenAI not configured. Please set up OpenAI first.")
-            return []
-        
-        if not self.resume_data:
-            print("❌ Resume data not loaded. Please load resume first.")
+        if not self.job_board_controller:
+            print("❌ Job board controller not configured. Please set up job board controller first.")
             return []
         
         print("🔍 Searching for relevant jobs...")
-        jobs = self.gpt_interface.find_relevant_jobs(self.resume_data, job_preferences)
+        jobs = self.job_board_controller.find_jobs(job_preferences)
         
         if jobs:
             print(f"✅ Found {len(jobs)} job opportunities")
@@ -261,30 +248,40 @@ class JobSeekerAgent:
             print("Please ensure your resume.json file exists in the data/ directory.")
             return
         
-        # Step 2: Setup OpenAI (optional)
-        print("\nStep 2: Setting up job search...")
-        api_key = os.getenv('OPENAI_API_KEY')
-        
-        if not api_key:
-            print("OpenAI API key not found in environment variables.")
-            print("You can:")
-            print("1. Set OPENAI_API_KEY environment variable")
-            print("2. Enter your API key now (not recommended for security)")
-            print("3. Skip job search and only test resume generation")
+        # Step 2: Setup job boards
+        print("\nStep 2: Setting up job boards...")
+
+        job_boards = ["JoobleAPI", "AdzunaAPI"]
+        api_keys = {}
+
+        for board in job_boards:
+            config_key = board.lower()
+            api_key = self.config.get(config_key, {}).get("api_key")
             
-            choice = input("\nChoose an option (1/2/3): ").strip()
-            
-            if choice == '2':
-                api_key = input("Enter your OpenAI API key: ").strip()
-            elif choice == '3':
-                print("Skipping job search. You can test resume generation with sample data.")
-                api_key = None
+            if not api_key:
+                print(f"{board} API key not found in config.yaml.")
+                print("You can:")
+                print("1. Add {}_api_key to config.yaml".format(config_key))
+                print("2. Enter your API key now (not recommended for security)")
+                print("3. Skip this job board")
+                
+                choice = input("\nChoose an option (1/2/3): ").strip()
+                
+                if choice == '2':
+                    api_key = input("Enter your {} API key: ".format(board)).strip()
+                elif choice == '3':
+                    print("Skipping {} job board.".format(board))
+                    api_key = None
+                else:
+                    print("Please add {}_api_key to config.yaml and try again.".format(config_key))
+                    return
+                
+                api_keys[board] = api_key
             else:
-                print("Please set the OPENAI_API_KEY environment variable and try again.")
-                return
-        
-        if api_key:
-            if not self.setup_openai(api_key):
+                api_keys[board] = api_key
+
+        if any(api_key for api_key in api_keys.values()):
+            if not self.setup_API_interface(api_keys):
                 return
             
             # Step 3: Find jobs
