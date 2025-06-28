@@ -7,6 +7,15 @@ openai:
   max_tokens: 2000
   temperature: 0.7
 
+# Adzuna Job Board Configuration
+adzuna:
+  app_id: 876306e2  # Set this or use ADZUNA_APP_ID environment variable
+  app_key: 7f16d3d0e5ca95494feba5ab8831cb59  # Set this or use ADZUNA_APP_KEY environment variable
+
+# Jooble Job Board Configuration
+jooble:
+  api_key: a31c6058-400f-411d-a6f6-18992e2afaf0  # Set this or use JOOBLE_API_KEY environment variable
+
 # Ollama Configuration  
 ollama:
   url: "http://localhost:11434"

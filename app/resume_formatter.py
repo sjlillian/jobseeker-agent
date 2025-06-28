@@ -3,7 +3,7 @@ import json
 import os
 from typing import Dict, Any
 from jinja2 import Template
-
+'Refactor to use recursion when the PDF is > 1 page'
 class OllamaResumeFormatter:
     def __init__(self, ollama_url: str = "http://localhost:11434"):
         """

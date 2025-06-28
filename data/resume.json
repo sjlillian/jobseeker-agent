@@ -1,120 +1,112 @@
 {
-  "name": "Alex Jordan",
-  "title": "Full Stack Software Engineer",
+  "name": "Spencer Lillian",
+  "title": "Aspiring Software Developer",
   "contact": {
-    "address": "Seattle, WA",
-    "phone": "(555) 123-4567",
-    "email": "alex.jordan@email.com",
-    "linkedin": "linkedin.com/in/alexjordan",
-    "github": "github.com/alexjordan",
-    "website": "alexjordan.dev"
+    "address": "Flower Mound, Texas",
+    "phone": "(801) 369 2693",
+    "email": "sjlillian8@gmail.com",
+    "linkedin": "linkedin.com/in/spencer-lillian-cs",
+    "github": "github.com/sjlillian",
+    "website": " "
   },
-  "summary": "Passionate Full Stack Software Engineer with 5+ years of experience building scalable web applications and APIs. Expert in modern JavaScript frameworks, Python, and cloud technologies. Proven track record of leading development teams and delivering high-quality software solutions that improve user experience and business outcomes.",
+  "summary": "Aspiring software developer with hands-on experience in robotics, coding education, and customer-facing leadership. Proven adaptability across diverse environments—from clinical automation with Diligent Robotics to Java/Python mentorship and customer service supervision. Strong foundation in object-oriented programming, agile methodologies, and data-driven projects, with a passion for continual learning and creative problem-solving. Actively pursuing a B.S. in Computer Science with recent exposure to AI/ML, Java, and Springboot development.",
   "skills": [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Node.js",
+    "Java",
     "Python",
-    "Django",
-    "FastAPI",
-    "PostgreSQL",
-    "MongoDB",
-    "AWS",
-    "Docker",
-    "Kubernetes",
+    "Agile",
     "Git",
-    "CI/CD",
-    "RESTful APIs",
-    "GraphQL",
-    "Redis",
-    "Microservices",
-    "Agile/Scrum",
-    "Team Leadership"
+    "Linux",
+    "Microsoft Office",
+    "Google Workspace",
+    "Visual Studio Code",
+    "PostgreSQL",
+    "HTML/CSS",
+    "Databases",
+    "Object-Oriented Programming",
+    "Machine Learning (basic)",
+    "Communication",
+    "Creative Writing",
+    "Problem Solving",
+    "Teamwork",
+    "Windows",
+    "Strategy",
+    "Planning",
+    "Maven Framework",
+    "Springboot"
   ],
   "experience": [
     {
-      "title": "Senior Software Engineer",
-      "company": "TechFlow Solutions",
-      "location": "Seattle, WA",
-      "start_date": "March 2022",
+      "title": "Clinical Robot Technician (CRA)",
+      "company": "Diligent Robotics",
+      "location": "Dallas, TX",
+      "start_date": "December 2023",
       "end_date": "Present",
       "description": [
-        "Lead a team of 4 engineers in developing and maintaining microservices architecture serving 100K+ daily active users",
-        "Architected and implemented a real-time analytics dashboard using React, Node.js, and WebSocket technology, improving data visibility by 300%",
-        "Optimized database queries and implemented Redis caching, reducing API response times by 60%",
-        "Mentored junior developers and established code review practices that improved code quality and reduced bugs by 40%",
-        "Collaborated with product managers and designers to deliver 15+ feature releases using Agile methodologies"
+        "Assist four clinical delivery robots in a hospital setting by providing technical and physical troubleshooting.",
+        "Monitor robotic performance and ensure successful task execution in a live healthcare environment.",
+        "Conduct on-the-spot diagnostics and collaborate with engineering teams to escalate issues."
       ]
     },
     {
-      "title": "Software Engineer",
-      "company": "DataCore Technologies",
-      "location": "San Francisco, CA",
-      "start_date": "June 2020",
-      "end_date": "February 2022",
+      "title": "Python/Java Mentor",
+      "company": "CodeWiz",
+      "location": "Keller, TX",
+      "start_date": "May 2023",
+      "end_date": "December 2023",
       "description": [
-        "Developed and maintained RESTful APIs using Python Django and FastAPI, serving data to mobile and web applications",
-        "Built responsive web applications using React and TypeScript, improving user engagement by 45%",
-        "Implemented automated testing suites with 90% code coverage using Jest, Pytest, and Selenium",
-        "Designed and implemented CI/CD pipelines using GitHub Actions and AWS, reducing deployment time by 80%",
-        "Collaborated with data science team to integrate machine learning models into production applications"
+        "Mentored students aged 8–15 in Python and Java programming using structured curriculum and self-paced learning.",
+        "Provided individual support on coding challenges, debugging, and conceptual understanding.",
+        "Fostered a positive and engaging learning environment tailored to varying skill levels."
       ]
     },
     {
-      "title": "Junior Software Developer",
-      "company": "StartupXYZ",
-      "location": "Austin, TX",
-      "start_date": "August 2019",
-      "end_date": "May 2020",
+      "title": "Deck Manager / Swim Instructor",
+      "company": "AquaKids",
+      "location": "Flower Mound, TX",
+      "start_date": "October 2022",
+      "end_date": "December 2023",
       "description": [
-        "Developed full-stack web applications using JavaScript, React, and Node.js for early-stage startup",
-        "Created and maintained PostgreSQL database schemas and optimized queries for performance",
-        "Implemented user authentication and authorization systems using JWT and OAuth2",
-        "Participated in daily standups and sprint planning as part of a cross-functional Agile team",
-        "Contributed to open-source projects and maintained comprehensive technical documentation"
+        "Taught swimming lessons and supervised swim instructors to maintain quality and safety.",
+        "Certified as a lifeguard to ensure compliance and emergency readiness.",
+        "Balanced instructor coaching with hands-on class management."
+      ]
+    },
+    {
+      "title": "Customer Service Supervisor",
+      "company": "RC Willey",
+      "location": "Draper, UT",
+      "start_date": "April 2019",
+      "end_date": "July 2022",
+      "description": [
+        "Supervised customer service team and served as escalation point for issue resolution.",
+        "Managed customer financing inquiries and logistics for delivery or product issues.",
+        "Progressed from cashier to supervisor through consistent performance and leadership."
       ]
     }
   ],
   "education": [
     {
-      "school": "University of Washington",
-      "degree": "Bachelor of Science in Computer Science",
-      "year": "2019"
-    },
-    {
-      "school": "University of Washington",
-      "degree": "Minor in Mathematics",
-      "year": "2019"
+      "school": "Western Governors University",
+      "degree": "BS in Computer Science",
+      "year": "Expected March 2025"
     }
   ],
   "certifications": [
-    "AWS Certified Developer - Associate (2023)",
-    "Google Cloud Professional Cloud Architect (2022)",
-    "Certified Kubernetes Administrator (CKA) (2023)",
-    "MongoDB Certified Developer (2021)"
+    "LPI Linux Essentials",
+    "ITIL 4 Foundations"
   ],
   "projects": [
     {
-      "name": "EcoTrack - Personal Carbon Footprint Tracker",
-      "description": "Full-stack web application that helps users track and reduce their carbon footprint. Features include data visualization, goal setting, and social sharing. Gained 5000+ active users within 6 months.",
-      "technologies": ["React", "Node.js", "Express", "PostgreSQL", "Chart.js", "AWS EC2", "Docker"]
-    },
-    {
-      "name": "TaskFlow - Project Management API",
-      "description": "RESTful API for project management with features including task assignment, time tracking, and team collaboration. Implemented microservices architecture with comprehensive documentation.",
-      "technologies": ["Python", "FastAPI", "PostgreSQL", "Redis", "Docker", "Kubernetes", "OpenAPI"]
-    },
-    {
-      "name": "SmartHome Dashboard",
-      "description": "IoT dashboard for monitoring and controlling smart home devices. Real-time data updates using WebSocket connections and responsive design for mobile and desktop.",
-      "technologies": ["TypeScript", "React", "Socket.io", "MongoDB", "Raspberry Pi", "MQTT"]
+      "title": "AI/ML Capstone – MTG Tournament Guesser",
+      "description": "Designed a predictive model using Random Forest AI and Gaussian Optimization to forecast tournament winners based on Magic: The Gathering Commander deck data. Utilized PostgreSQL for data storage and SMILE ML libraries for implementation. Despite unsuccessful results, gained insight into data-driven model limitations and the importance of holistic data collection.",
+      "technologies": [
+        "Random Forest AI",
+        "Gaussian Optimization",
+        "PostgreSQL",
+        "SMILE ML library"
+      ],
+      "link": "https://github.com/sjlillian/MTG_tournament_guesser"
     }
   ],
-  "awards": [
-    "Employee of the Year - TechFlow Solutions (2023)",
-    "Hackathon Winner - Seattle Tech Challenge (2022)",
-    "Dean's List - University of Washington (2017-2019)",
-    "Outstanding Senior Project Award - Computer Science Department (2019)"
-  ]
+  "awards": []
 }

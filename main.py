@@ -4,13 +4,13 @@ Job Seeker Agent - Main Application
 
 This application helps users find relevant jobs and create tailored resumes:
 1. Loads user's resume data
-2. Uses OpenAI to find relevant job opportunities
+2. Uses job board APIs to find relevant job opportunities
 3. Allows user to select jobs of interest
 4. Uses Ollama to tailor resume for selected jobs
 5. Generates PDF resumes for each selected job
 
 Author: Job Seeker Agent
-Date: 2025
+Date: June 2025
 """
 
 import os
@@ -38,7 +38,6 @@ class JobSeekerAgent:
         Initialize the Job Seeker Agent
         """
         self.resume_renderer = ResumeRenderer()
-        self.gpt_interface = None
         self.ollama_formatter = OllamaResumeFormatter()
         self.resume_data = {}
         
@@ -61,6 +60,7 @@ class JobSeekerAgent:
         print(f"✅ Loaded resume for: {self.resume_data.get('name', 'Unknown')}")
         return True
     
+    'Refactor setup_openai to setup_API_interface'
     def setup_openai(self, api_key: str = None) -> bool:
         """
         Setup OpenAI interface
@@ -79,6 +79,7 @@ class JobSeekerAgent:
             print(f"❌ Failed to setup OpenAI: {e}")
             return False
     
+    'Refactor find_jobs to call each API implementation'
     def find_jobs(self, job_preferences: Dict[str, Any] = None) -> List[Dict[str, Any]]:
         """
         Find relevant jobs using OpenAI
