@@ -61,7 +61,7 @@ python app/gpt_interface.py
 | Component | Status | Notes |
 |-----------|--------|---------|
 | 📝 Resume Loading | ✅ Working | Loads from JSON, renders HTML |
-| 🔍 Job Search (OpenAI) | ✅ Ready | Requires API key |
+| 🔍 Job Search | ⚠️ In the works | Requires API key |
 | 🤖 Resume Tailoring (Ollama) | ✅ Ready | Requires Ollama setup |
 | 📄 HTML Generation | ✅ Working | Beautiful Jinja2 templates |
 | 🗂️ PDF Conversion | ⚠️ Depends | Requires external tools |
