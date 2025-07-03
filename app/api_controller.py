@@ -1,3 +1,6 @@
+from job_board_apis.jooble_api import JoobleAPI
+from job_board_apis.adzuna_api import AdzunaAPI
+
 class JobBoardController:
     def __init__(self):
         self.apis = {}
@@ -14,8 +17,9 @@ class JobBoardController:
             print(f"❌ Failed to setup job board APIs: {e}")
             return False
 
-    def find_jobs(self, job_preferences: Dict[str, Any] = None) -> Dict[str, Any]:
+    def find_jobs(self, resume_data: dict[str, any] = None) -> dict[str, any]:
         if not self.is_initialized:
             return []
         
-        return {**self.apis["JoobleAPI"].search_jobs(job_preferences), **self.apis["AdzunaAPI"].search_jobs(job_preferences)}
+        print("🔍 Searching for relevant jobs...")
+        return {**self.apis["JoobleAPI"].search_jobs(resume_data), **self.apis["AdzunaAPI"].search_jobs(resume_data)}

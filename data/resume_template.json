@@ -5,7 +5,7 @@
   "name": "Your Full Name",
   "title": "Your Professional Title",
   "contact": {
-    "address": "City, State/Country",
+    "location": "City, State/Country",
     "phone": "(xxx) xxx-xxxx",
     "email": "your.email@example.com",
     "linkedin": "linkedin.com/in/yourprofile",

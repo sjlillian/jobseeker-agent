@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 
-class JobBoardAPI(ABC):
+class JobAPI(ABC):
 
     @abstractmethod
-    def search_jobs(self, query: str, location: str = "", limit: int = 20) -> List[Dict[str, Any]]:
+    def search_jobs(self, resume_data: dict[str, any]) -> list[dict[str, any]]:
         """
         Search for jobs. Must be implemented by subclasses.
         
@@ -13,6 +13,6 @@ class JobBoardAPI(ABC):
             limit (int): Maximum number of jobs to return
             
         Returns:
-            List[Dict]: List of standardized job objects
+            list[dict]: list of standardized job objects
         """
         pass

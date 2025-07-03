@@ -22,7 +22,7 @@ from typing import List, Dict, Any
 sys.path.append('app')
 
 # Import our modules
-from gpt_interface import GPTInterface
+from api_controller import JobBoardController
 from resume_formatter import OllamaResumeFormatter
 from resume_loader import ResumeRenderer
 
@@ -71,12 +71,12 @@ class JobSeekerAgent:
         return self.job_board_controller.is_initialized
     
     'Refactor find_jobs to call each API implementation'
-    def find_jobs(self, job_preferences: Dict[str, Any] = None) -> List[Dict[str, Any]]:
+    def find_jobs(self, resume_data: dict[str, any] = None) -> list[dict[str, any]]:
         """
         Find relevant jobs using multiple job boards
         
         Args:
-            job_preferences (dict): User job preferences
+            resume_data (dict): User job preferences
             
         Returns:
             List[Dict]: List of relevant job opportunities
@@ -86,7 +86,7 @@ class JobSeekerAgent:
             return []
         
         print("🔍 Searching for relevant jobs...")
-        jobs = self.job_board_controller.find_jobs(job_preferences)
+        jobs = self.job_board_controller.find_jobs(resume_data)
         
         if jobs:
             print(f"✅ Found {len(jobs)} job opportunities")
@@ -251,12 +251,12 @@ class JobSeekerAgent:
         # Step 2: Setup job boards
         print("\nStep 2: Setting up job boards...")
 
-        job_boards = ["JoobleAPI", "AdzunaAPI"]
+        job_boards = ["Jooble_API", "Adzuna_API"]
         api_keys = {}
 
         for board in job_boards:
             config_key = board.lower()
-            api_key = self.config.get(config_key, {}).get("api_key")
+            api_key = config_key + "_api_key"
             
             if not api_key:
                 print(f"{board} API key not found in config.yaml.")
@@ -281,12 +281,12 @@ class JobSeekerAgent:
                 api_keys[board] = api_key
 
         if any(api_key for api_key in api_keys.values()):
-            if not self.setup_API_interface(api_keys):
+            if not self.setup_API_interface():
                 return
             
             # Step 3: Find jobs
             print("\nStep 3: Searching for relevant jobs...")
-            jobs = self.find_jobs()
+            jobs = self.find_jobs(self.resume_data)
             
             if jobs:
                 # Step 4: Display and select jobs

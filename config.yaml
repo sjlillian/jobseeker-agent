@@ -9,8 +9,8 @@ openai:
 
 # Adzuna Job Board Configuration
 adzuna:
-  app_id: 876306e2  # Set this or use ADZUNA_APP_ID environment variable
-  app_key: 7f16d3d0e5ca95494feba5ab8831cb59  # Set this or use ADZUNA_APP_KEY environment variable
+  api_id: 876306e2  # Set this or use ADZUNA_APP_ID environment variable
+  api_key: 7f16d3d0e5ca95494feba5ab8831cb59  # Set this or use ADZUNA_APP_KEY environment variable
 
 # Jooble Job Board Configuration
 jooble:

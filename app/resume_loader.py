@@ -121,7 +121,7 @@ def test_resume_renderer():
             "summary": "Experienced software developer with expertise in Python and web development.",
             "skills": ["Python", "JavaScript", "React", "Django", "SQL", "AWS"],
             "contact": {
-                "address": "123 Main St, City, State",
+                "location": "123 Main St, City, State",
                 "phone": "(555) 123-4567",
                 "email": "john.doe@email.com",
                 "linkedin": "linkedin.com/in/johndoe",
